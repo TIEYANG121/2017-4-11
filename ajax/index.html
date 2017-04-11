@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style/bootstrap.min.css">
+</head>
+<body>
+	<button class="btn btn-primary">获取学生数据</button>
+	<table class="table table-bordered">
+		<thead>
+			<th>姓名</th>
+			<th>年龄</th>
+			<th>性别</th>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+	<script src="jquery.js"></script>
+	<script>
+		// document.querySelector('button').onclick=function(){
+		// 	var xhr = new XMLHttpRequest();
+		// 	xhr.open('get','date/date.txt');
+		// 	xhr.send();
+
+		// 	xhr.onreadystatechange=function(){
+		// 		if(xhr.readyState === 4 && xhr.status === 200){
+		// 			alert(xhr.responseText)
+		// 		}
+		// 	}
+		// }
+
+		// $.ajax({
+		// 	url:'date/date.txt',
+		// 	type:'get' 
+		// }).done(function(date){
+		// 	alert(date);
+		// }).fail(function(xhr){
+		// 	console.log(xhr)
+		// })
+		$('button').click(function(){
+				$.ajax({
+				url:'date/student.json',
+				type:'get' 
+			}).done(function(date){
+				for (var i = 0;i<date.length;i++) {
+					var tr = $('<tr>');
+					for (var j in date[i]) {
+						var td = $('<td>');
+						td.text(date[i][j]);
+						tr.append(td)
+					}
+					$('table tbody').append(tr)
+				}
+			}).fail(function(xhr){
+				console.log(xhr)
+			})
+		})
+		
+	</script>
+</body>
+</html>

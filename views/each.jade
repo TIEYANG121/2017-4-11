@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+	meta(charset="UTF-8")
+	title Document
+	link(rel="stylesheet", href="style/bootstrap.min.css")
+body
+	form(action="/" method="post")
+		input(type="text" name="name")
+		input(type="text" name="age")
+		input(type="text" name="sex")
+		input(type="submit" value="添加")
+
+
+	
+		thead
+			tr 姓名
+			tr 年龄
+			tr 性别
+
+		tbody
+			each val.index in students
+			tr=val.name
+			tr=val.age
+			tr=val.sex
+			tr
+				form(action="/delete" method="post")
+					input(type="text",name="ind",value=index)
+							input(type="submit",value="删除")
